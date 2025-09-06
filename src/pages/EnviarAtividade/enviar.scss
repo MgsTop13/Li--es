@@ -1,0 +1,241 @@
+body {
+    background-color: #06494e;
+}
+
+main {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #0b686e;
+        height: 60px;
+        border-bottom: 3px solid black;
+        box-shadow: 0px 5px 20px black;
+        padding: 0 20px;
+
+        .PageAtualEnviar {
+            border-radius: 25px;
+            background-color: #5fad56;
+            padding: 10px 20px;
+            text-align: center;
+            border: 1px solid black;
+            box-shadow: -2px 4px 3px black;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+
+            h1 {
+                font-size: 1.2rem;
+                margin: 0;
+
+                .Link {
+                    color: #110b11;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .Voltar {
+            margin: 0;
+
+            .Link {
+                color: #110b11;
+                text-decoration: none;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+
+        h3 {
+            color: #fff;
+            margin: 15px 0 5px 0;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #c1292e;
+            padding: 10px 20px;
+            border: 1px solid black;
+            border-radius: 8px;
+            transition: 0.5s;
+            box-shadow: -2px 5px 6px black;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.1);
+                background-color: #a32024;
+            }
+        }
+
+    }
+}
+
+body {
+    background-color: #06494e;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #0b686e;
+        height: 60px;
+        border-bottom: 3px solid black;
+        box-shadow: 0px 5px 20px black;
+        padding: 0 20px;
+        position: relative;
+
+        .PageAtualEnviar {
+            border-radius: 25px;
+            background-color: #5fad56;
+            padding: 10px 20px;
+            text-align: center;
+            border: 1px solid black;
+            box-shadow: -2px 4px 3px black;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 10px;
+
+            h1 {
+                font-size: 1.2rem;
+                margin: 0;
+
+                .Link {
+                    color: #110b11;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .Voltar {
+            margin: 0;
+            .Link {
+                color: #110b11;
+                text-decoration: none;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+
+        h3 {
+            color: #fff;
+            margin: 15px 0 5px 0;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #c1292e;
+            padding: 10px 20px;
+            border: 1px solid black;
+            border-radius: 8px;
+            transition: 0.5s;
+            box-shadow: -2px 5px 6px black;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.1);
+                background-color: #a32024;
+            }
+        }
+    }
+}
+
+/* ✅ Responsividade */
+@media (max-width: 768px) {
+    main {
+        header {
+            flex-direction: column;
+            height: auto;
+            padding: 15px;
+
+            .PageAtualEnviar {
+                position: static;
+                transform: none;
+                width: 90%;
+                margin-bottom: 10px;
+
+                h1 {
+                    font-size: 1rem;
+                }
+            }
+
+            .Voltar {
+                margin-top: 5px;
+                font-size: 0.9rem;
+            }
+        }
+
+        .page {
+            padding: 15px;
+
+            input {
+                width: 90%;
+                font-size: 1rem;
+            }
+
+            button {
+                width: 90%;
+                padding: 12px;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+/* ✅ Responsividade extra para celulares muito pequenos */
+@media (max-width: 480px) {
+    main {
+        header {
+            .PageAtualEnviar h1 {
+                font-size: 0.9rem;
+            }
+            .Voltar {
+                font-size: 0.8rem;
+            }
+        }
+
+        .page {
+            input, button {
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
