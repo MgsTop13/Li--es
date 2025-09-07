@@ -12,27 +12,30 @@ export default function EnviarAtividade() {
     const [data, setData] = useState('');
 
     async function EnviarAtividades() {
-        const { data, error } = await supabase
-            .from('licoes')
-            .insert([{
-                nm_licao: nomeLicao,
-                descricao,
-                data,
-                nm_materia: materia
-            }]);
+    // Renomeie a variável 'data' da resposta do Supabase para 'response' (ou outro nome)
+    const { data: response, error } = await supabase
+        .from('licoes')
+        .insert([{
+            nm_licao: nomeLicao,
+            descricao,
+            // Esta linha agora se refere corretamente à variável de estado 'data'
+            data,
+            nm_materia: materia
+        }]);
 
-        if (error) {
-            console.error(error);
-            alert("Falha ao enviar atividade");
-        } else {
-            console.log("Atividade inserida:", data);
-            alert("Atividade enviada com sucesso!");
-            setNomeLicao('');
-            setMateria('');
-            setDescricao('');
-            setData('');
-        }
+    if (error) {
+        console.error(error);
+        alert("Falha ao enviar atividade");
+    } else {
+        // Use o novo nome 'response' para acessar os dados do Supabase
+        console.log("Atividade inserida:", response);
+        alert("Atividade enviada com sucesso!");
+        setNomeLicao('');
+        setMateria('');
+        setDescricao('');
+        setData('');
     }
+}
 
     return (
         <div>
