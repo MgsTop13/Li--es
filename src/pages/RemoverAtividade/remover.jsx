@@ -4,15 +4,16 @@ import "../../scss/fonts.scss";
 import { Link } from "react-router";
 import { useState } from "react";
 import { supabase } from "../../supabaseClient";
-
+import Cabecalho2 from "../../components/headerPages";
 export default function RemoverAtividade() {
     const [id2, setId2] = useState('');
+    const [name, setName] = useState('');
 
     async function RemoverAtividades() {
         const { data, error } = await supabase
             .from('licoes')
             .delete()
-            .eq('id', id2);
+            .eq('nm_licao', name) || ('id2', id2);
 
         if (error) {
             console.error(error);
@@ -21,25 +22,21 @@ export default function RemoverAtividade() {
             console.log("Atividade removida:", data);
             alert("Atividade removida com sucesso!");
             setId2('');
+            setName('');
         }
     }
 
     return (
-        <div>
-            <main>
-                <header>
-                    <div className="PageAtualRemover">
-                        <h1>Deletar Atividades</h1>
-                    </div>
-                    <h3><Link className="Link" to={"/"}>Voltar</Link></h3>
-                </header>
-
-                <section className="page">
-                    <h3>ID da lição</h3>
-                    <input type="text" placeholder="7" value={id2} onChange={e => setId2(e.target.value)} />
-                    <button onClick={RemoverAtividades}>Remover Atividade</button>
-                </section>
-            </main>
-        </div>
+        <main className="main-remover">
+            <Cabecalho2 
+                nomePage="Remover Lição"
+            />
+            <section className="page-remover">
+                <h3>ID da lição</h3>
+                <input type="text" placeholder="7" value={id2} onChange={e => setId2(e.target.value)} />
+                <input type="text" placeholder="Historia" value={name} onChange={e => setName(e.target.value)} />
+                <button onClick={RemoverAtividades}>Remover Atividade</button>
+            </section>
+        </main>
     );
 }

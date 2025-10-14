@@ -8,8 +8,8 @@ export default function Rotas(){
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={ <Home /> } />
-                <Route path="EnviarAtividade" element={ <EnviarAtividades />} />
-                <Route path="RemoverAtividade" element={ <RemoverAtividades />} />
+                <Route path="/EnviarAtividade" element={ <EnviarAtividades />} />
+                <Route path="/RemoverAtividade" element={ <RemoverAtividades />} />
             </Routes>
         </BrowserRouter>
     )

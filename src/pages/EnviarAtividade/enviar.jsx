@@ -4,6 +4,8 @@ import "../../scss/fonts.scss";
 import { Link } from "react-router";
 import { useState } from "react";
 import { supabase } from "../../supabaseClient";
+import Cabecalho2 from "../../components/headerPages";
+
 
 export default function EnviarAtividade() {
     const [nomeLicao, setNomeLicao] = useState('');
@@ -38,18 +40,13 @@ export default function EnviarAtividade() {
 }
 
     return (
-        <div>
-            <main>
-                <header>
-                    <div className="PageAtualEnviar">
-                        <h1>Enviar Atividade</h1>
-                    </div>
-                    <h3 className="Voltar">
-                        <Link className="Link" to={"/"}>Voltar</Link>
-                    </h3>
-                </header>
+        
+            <main className="main-enviar">
+                <Cabecalho2
+                    nomePage="Enviar Lição"
+                />
 
-                <section className="page">
+                <section className="page-enviar">
                     <h3>Nome da Lição</h3>
                     <input type="text" placeholder="Revolução Industrial" value={nomeLicao} onChange={e => setNomeLicao(e.target.value)} />
 
@@ -65,6 +62,5 @@ export default function EnviarAtividade() {
                     <button onClick={EnviarAtividades}>Enviar Atividades</button>
                 </section>
             </main>
-        </div>
     );
 }

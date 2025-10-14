@@ -1,0 +1,54 @@
+.header1 {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    background-color: #20606F;
+    height: 80px;
+    border-bottom: 3px solid black;
+    box-shadow: 0px 5px 20px black;
+    justify-content: space-between;
+    padding: 0 10px;
+
+    .PageAtualHome {
+        border-radius: 25px;
+        background-color: #5fad56;
+        padding: 10px 20px;
+        text-align: center;
+        border: 1px solid black;
+        box-shadow: -2px 4px 3px black;
+        width: 35%;
+        position: relative;
+
+
+        h1 {
+            font-size: 1.2rem;
+            margin: 0;
+
+            .Link {
+                color: #110b11;
+                text-decoration: none;
+            }
+        }
+    }
+
+    h3 {
+        .Link {
+            color: #110b11;
+            text-decoration: none;
+        }
+
+        position:relative;
+
+    }
+
+    .RemoverAtividade {
+        position: relative;
+
+    }
+}
+
+@media (max-width: 768px) {
+    .header1{
+        flex-direction: row;
+    }
+}

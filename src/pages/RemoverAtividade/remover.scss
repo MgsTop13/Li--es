@@ -1,167 +1,162 @@
-body {
-    background-color: #06494e;
-}
+.main-remover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-main {
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #0b686e;
-        height: 60px;
-        border-bottom: 3px solid black;
-        box-shadow: 0px 5px 20px black;
-        padding: 0 20px;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0b686e;
+    height: 60px;
+    border-bottom: 3px solid black;
+    box-shadow: 0px 5px 20px black;
+    padding: 0 20px;
+    position: relative;
+    width: 100%;
 
-        .PageAtualRemover {
-            border-radius: 25px;
-            background-color: #5fad56;
-            padding: 10px 20px;
-            text-align: center;
-            border: 1px solid black;
-            box-shadow: -2px 4px 3px black;
-            position: relative;
-            left: 50%;
-            transform: translate(-50%);
+    .PageAtualRemover {
+      border-radius: 25px;
+      background-color: #e07a5f;
+      padding: 10px 20px;
+      text-align: center;
+      border: 1px solid black;
+      box-shadow: -2px 4px 3px black;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 10px;
 
-            h1 {
-                font-size: 1.2rem;
-                margin: 0;
+      h1 {
+        font-size: 1.2rem;
+        margin: 0;
 
-                .Link {
-                    color: #110b11;
-                    text-decoration: none;
-                }
-            }
+        .Link {
+          color: #110b11;
+          text-decoration: none;
         }
-
-        .Voltar {
-            margin: 0;
-
-            .Link {
-                color: #110b11;
-                text-decoration: none;
-                font-weight: bold;
-            }
-        }
+      }
     }
 
-    .page {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        text-align: center;
+    .Voltar {
+      margin: 0;
 
-        h3 {
-            color: #fff;
-            margin: 15px 0 5px 0;
-        }
-
-        input {
-            padding: 10px;
-            width: 250px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        button {
-            background-color: #c1292e;
-            padding: 10px 20px;
-            border: 1px solid black;
-            border-radius: 8px;
-            transition: 0.5s;
-            box-shadow: -2px 5px 6px black;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-
-            &:hover {
-                transform: scale(1.1);
-                background-color: #a32024;
-            }
-        }
-
+      .Link {
+        color: #110b11;
+        text-decoration: none;
+        font-weight: bold;
+      }
     }
+  }
+
+  /* 🌟 Seção da página de remoção */
+  .page-remover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 40px;
+
+    h3 {
+      color: #fff;
+      margin: 15px 0 5px 0;
+    }
+
+    input {
+      padding: 10px;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #333;
+      margin-bottom: 15px;
+      text-align: center;
+      background-color: #f5f5f5;
+      transition: 0.3s;
+
+      &:focus {
+        outline: none;
+        border-color: #e07a5f;
+        box-shadow: 0px 0px 5px #e07a5f;
+      }
+    }
+
+    button {
+      background-color: #c1292e;
+      padding: 10px 20px;
+      border: 1px solid black;
+      border-radius: 8px;
+      transition: 0.3s;
+      box-shadow: -2px 5px 6px black;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      max-width: 300px;
+
+      &:hover {
+        transform: scale(1.05);
+        background-color: #a32024;
+      }
+    }
+  }
 }
+
+/* 📱 Responsividade */
 @media (max-width: 768px) {
-    main {
-        header {
-            flex-direction: column;
-            height: auto;
-            padding: 10px;
+  .main-remover {
+    header {
+      flex-direction: column;
+      height: auto;
+      padding: 15px;
 
-            .PageAtual {
-                width: 90%;
-                margin-bottom: 10px;
+      .PageAtualRemover {
+        position: static;
+        transform: none;
+        width: 90%;
+        margin-bottom: 10px;
 
-                h1 {
-                    font-size: 1rem;
-                }
-            }
-
-            h3 {
-                font-size: 0.9rem;
-            }
+        h1 {
+          font-size: 1rem;
         }
+      }
 
-        .page {
-            padding: 10px;
-
-            input {
-                width: 90%;
-                font-size: 1rem;
-            }
-
-            button {
-                width: 90%;
-                padding: 12px;
-                font-size: 1rem;
-            }
-
-            table {
-                width: 100%;
-                font-size: 0.9rem;
-
-                th, td {
-                    padding: 8px;
-                }
-            }
-        }
+      .Voltar {
+        margin-top: 5px;
+        font-size: 0.9rem;
+      }
     }
+
+    .page-remover {
+      width: 90%;
+      input,
+      button {
+        font-size: 1rem;
+      }
+    }
+  }
 }
 
-/* ✅ Responsividade extra para celulares muito pequenos */
+/* 📱 Responsividade extra */
 @media (max-width: 480px) {
-    main {
-        header {
-            .PageAtual {
-                padding: 8px;
-                h1 {
-                    margin-top: 5rem !important;
-                    font-size: 0.9rem;
+  .main-remover {
+    header {
+      .PageAtualRemover h1 {
+        font-size: 0.9rem;
+      }
 
-                    .Link{
-                        margin-top: 5rem;
-                    }
-                }
-            }
-
-            h3 {
-                font-size: 0.8rem;
-            }
-        }
-
-        .page {
-            input, button {
-                font-size: 0.9rem;
-            }
-
-            table {
-                font-size: 0.8rem;
-            }
-        }
+      .Voltar {
+        font-size: 0.8rem;
+      }
     }
+
+    .page-remover {
+      input,
+      button {
+        font-size: 0.9rem;
+      }
+    }
+  }
 }
