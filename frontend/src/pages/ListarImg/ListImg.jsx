@@ -14,7 +14,7 @@ export default function VerImagens() {
     async function buscarImagens() {
         try {
             setCarregando(true);
-            
+
             let query = supabase
                 .from('Imagens')
                 .select('*')
@@ -80,11 +80,11 @@ export default function VerImagens() {
             <section className="page-ver-imagens">
                 <div className="header-imagens">
                     <h2>Imagens Carregadas</h2>
-                    
+
                     {/* Filtro por categoria */}
                     <div className="filtros">
-                        <select 
-                            value={filtroCategoria} 
+                        <select
+                            value={filtroCategoria}
                             onChange={e => setFiltroCategoria(e.target.value)}
                             className="filtro-categoria"
                         >
@@ -95,7 +95,7 @@ export default function VerImagens() {
                                 </option>
                             ))}
                         </select>
-                        
+
                         <span className="contador">
                             {imagens.length} imagem{imagens.length !== 1 ? 's' : ''} encontrada{imagens.length !== 1 ? 's' : ''}
                         </span>
@@ -112,7 +112,7 @@ export default function VerImagens() {
                         <div className="icone">📷</div>
                         <h3>Nenhuma imagem encontrada</h3>
                         <p>
-                            {filtroCategoria 
+                            {filtroCategoria
                                 ? `Nenhuma imagem na categoria "${filtroCategoria}"`
                                 : "Ainda não há imagens carregadas. Seja o primeiro a enviar!"
                             }
@@ -123,19 +123,20 @@ export default function VerImagens() {
                         {imagens.map(imagem => (
                             <div key={imagem.id} className="card-imagem">
                                 <div className="imagem-container">
-                                    <img 
-                                        src={`http://localhost:5010${imagem.img_url}`} 
+                                    <img
+                                        src={imagem.img_url} // Já é caminho relativo: '/public/storage/lousas/arquivo.jpg'
                                         alt={imagem.titulo}
                                         onError={(e) => {
-                                            e.target.src = 'https://via.placeholder.com/300x200?text=Imagem+Não+Encontrada';
+                                            e.target.src = '/placeholder-image.png'; // Ou usar um fallback local
+                                            e.target.alt = 'Imagem não carregada';
                                         }}
                                     />
                                 </div>
-                                
+
                                 <div className="info-imagem">
                                     <h3 className="titulo-imagem">{imagem.titulo}</h3>
                                     <p className="descricao-imagem">{imagem.descricao}</p>
-                                    
+
                                     <div className="meta-imagem">
                                         <span className="categoria-badge">
                                             {imagem.categoria}
@@ -144,15 +145,15 @@ export default function VerImagens() {
                                             {new Date(imagem.data_upload).toLocaleDateString('pt-BR')}
                                         </span>
                                     </div>
-                                    
+
                                     <div className="acoes-imagem">
-                                        <button 
+                                        <button
                                             className="btn-visualizar"
-                                            onClick={() => window.open(`http://localhost:5010${imagem.img_url}`, '_blank')}
+                                            onClick={() => window.open(imagem.img_url, '_blank')}
                                         >
                                             🔍 Ampliar
                                         </button>
-                                        <button 
+                                        <button
                                             className="btn-deletar"
                                             onClick={() => deletarImagem(imagem.id, imagem.titulo)}
                                         >

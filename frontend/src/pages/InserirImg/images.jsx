@@ -41,22 +41,24 @@ export default function EnviarImagem() {
     }
 
     async function uploadImagem(file) {
-        const formData = new FormData();
-        formData.append('imagem', file);
+    const formData = new FormData();
+    formData.append('imagem', file);
 
-        const response = await fetch('http://localhost:5010/api/upload', {
-            method: 'POST',
-            body: formData
-        });
+    // URL dinâmica para produção/desenvolvimento
+    const baseUrl = window.location.origin; // Isso pega https://li-es.onrender.com
+    const response = await fetch(`${baseUrl}/api/upload`, {
+        method: 'POST',
+        body: formData
+    });
 
-        const data = await response.json();
-        
-        if (!data.success) {
-            throw new Error(data.error);
-        }
-
-        return data.imageUrl;
+    const data = await response.json();
+    
+    if (!data.success) {
+        throw new Error(data.error);
     }
+
+    return data.imageUrl; // Isso retorna algo como '/public/storage/lousas/arquivo.jpg'
+}
 
     async function EnviarImagem() {
         if (!titulo || !descricao || !categoria || !imagem) {
