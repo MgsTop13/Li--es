@@ -15,6 +15,7 @@ export default function Home() {
             .select('*');
 
         if (error) {
+            alert('Error interno no servidor!')
             console.error(error);
         } else {
             setLicao(data);
