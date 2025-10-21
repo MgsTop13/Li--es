@@ -14,19 +14,26 @@ const __dirname = path.dirname(__filename);
 api.use(cors());
 api.use(express.json());
 
-// Servir arquivos estáticos
-api.use('/public', express.static(path.join(__dirname, 'public')));
+// Servir arquivos estáticos do frontend
 api.use(express.static(path.join(__dirname, 'frontend/dist')));
+
+// Servir arquivos uploadados
+api.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Suas rotas da API
 adicionarRotas(api);
 
-// Rota para servir o frontend (React) - CORREÇÃO: use regex ou array
-api.get('*', (req, res) => {
-    // Ignorar rotas da API
-    if (req.path.startsWith('/api') || req.path.startsWith('/public')) {
-        return res.status(404).json({ error: 'Not found' });
+// Rota curinga para SPA - SOLUÇÃO: usar uma função personalizada
+api.use((req, res, next) => {
+    // Se for uma rota de API, continuar
+    if (req.path.startsWith('/api')) {
+        return next();
     }
+    // Se for um arquivo (tem extensão), continuar
+    if (req.path.includes('.')) {
+        return next();
+    }
+    // Para qualquer outra rota, servir o index.html do React
     res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
 });
 

@@ -4,18 +4,16 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5010',
-        changeOrigin: true
-      }
-    }
+    port: 3000
   },
   build: {
     outDir: 'dist',
-    sourcemap: false
-  },
-  // IMPORTANTE: Configurar base para deploy
-  base: './'
+    sourcemap: false,
+    // Configuração importante para SPA
+    rollupOptions: {
+      input: {
+        main: './index.html'
+      }
+    }
+  }
 })
