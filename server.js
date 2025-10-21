@@ -21,8 +21,12 @@ api.use(express.static(path.join(__dirname, 'frontend/dist')));
 // Suas rotas da API
 adicionarRotas(api);
 
-// Rota para servir o frontend (React) - APÓS as rotas da API
+// Rota para servir o frontend (React) - CORREÇÃO: use regex ou array
 api.get('*', (req, res) => {
+    // Ignorar rotas da API
+    if (req.path.startsWith('/api') || req.path.startsWith('/public')) {
+        return res.status(404).json({ error: 'Not found' });
+    }
     res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
 });
 
