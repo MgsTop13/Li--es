@@ -10,16 +10,18 @@ export default function Home() {
     const [licao, setLicao] = useState([]);
 
     async function CarregarAtividades() {
-        const { data, error } = await supabase
-            .from('licoes')
-            .select('*');
-
-        if (error) {
-            alert('Error interno no servidor!')
-            console.error(error);
-        } else {
+        try{
+            const { data, error } = await supabase
+                .from('licoes')
+                .select('*');
+                
+            alert("Lições carregadas")
             setLicao(data);
+        } catch(error){
+            return alert("Error na requisição: ", error.message)
         }
+            
+        
     }
 
     return (
@@ -29,7 +31,7 @@ export default function Home() {
             <section className="page-home">
 
                 {licao.map((item, index) => {
-                    const dataFormatada = new Date(item.data).toLocaleDateString("pt-BR", {
+                    const dataFormatada = new Date(item.data_entrega).toLocaleDateString("pt-BR", {
                         day: "2-digit",
                         month: "2-digit",
                         year: "numeric"
@@ -37,13 +39,13 @@ export default function Home() {
                     return (
                         <section key={index} className="dados">
                             <h2>Matéria</h2>
-                            <h3>{item.nm_materia}</h3>
+                            <h3>{item.materia}</h3>
                             <h2>Título</h2>
-                            <h3>{item.nm_licao}</h3>
+                            <h3>{item.titulo_licao}</h3>
                             <h2>Descrição</h2>
-                            <h3>{item.descricao}</h3>
+                            <h3>{item.descricao_licao}</h3>
                             <h2>Dia de Entrega</h2>
-                            <h3>{item.data}</h3>
+                            <h3>{item.data_entrega}</h3>
                         </section>
                     );
                 })}
