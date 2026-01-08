@@ -5,6 +5,8 @@ import { Link } from "react-router";
 import { useState } from "react";
 import { supabase } from "../../supabaseClient";
 import Cabecalho2 from "../../components/headerPages";
+
+
 export default function RemoverAtividade() {
     const [id2, setId2] = useState('');
     const [name, setName] = useState('');
@@ -13,13 +15,11 @@ export default function RemoverAtividade() {
         const { data, error } = await supabase
             .from('licoes')
             .delete()
-            .eq('nm_licao', name) || ('id2', id2);
+            .eq('titulo_licao', name) || ('id2', id2);
 
         if (error) {
-            console.error(error);
             alert("Falha ao deletar atividade");
         } else {
-            console.log("Atividade removida:", data);
             alert("Atividade removida com sucesso!");
             setId2('');
             setName('');

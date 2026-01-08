@@ -1,6 +1,5 @@
-import express from 'express';
-import LicaoController from './Controller/LicaoController.js';
+import licaoC from './controller/licaoC.js';
+
 export function adicionarRotas(api) {
-    api.use('/public/storage', express.static('public/storage'));
-    api.use('/api', LicaoController);
+    api.use(licaoC);
 }

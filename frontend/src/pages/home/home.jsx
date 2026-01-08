@@ -20,8 +20,6 @@ export default function Home() {
         } catch(error){
             return alert("Error na requisição: ", error.message)
         }
-            
-        
     }
 
     return (
