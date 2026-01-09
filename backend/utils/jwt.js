@@ -7,11 +7,11 @@ export function generateToken(usuario) {
   const userInfo = {
     name: usuario.name,
     email: usuario.email,
-    nasc: usuario.dataNasc,
-    pass: usuario.palavraRecuperacao,
+    pass: usuario.recuperacao,
     role: usuario.id_user,
     date: new Date()
   };
+  console.log(usuario)
   return jwt.sign(userInfo, KEY, { expiresIn: '40m' });
 }
 
