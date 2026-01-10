@@ -1,6 +1,7 @@
 import {Router} from "express"
 const endpoint = Router();
 import {supabase} from "../supabaseClient.js"
+import {generateToken, verifyToken} from "../utils/jwt.js"
 
 endpoint.get("/CarregarLicoes", async(req,res) =>{
     try{
@@ -17,10 +18,15 @@ endpoint.get("/CarregarLicoes", async(req,res) =>{
 endpoint.post("/EnviarLicao", async(req,res) =>{
     try{
         const dadosLicao = req.body;
-        const responseBanco = await supabase
+        const verf = verifyToken(dadosLicao.token)
+        if(!verf.name || !verf.role){
+           return res.send("Token invalido")
+        }
+         const responseBanco = await supabase
             .from("licoes")
             .insert([{
-                name: dadosLicao.username,
+                id_user: verf.role,
+                name: verf.name,
                 titulo_licao: dadosLicao.title,
                 descricao_licao: dadosLicao.description,
                 materia: dadosLicao.materia,
@@ -34,8 +40,17 @@ endpoint.post("/EnviarLicao", async(req,res) =>{
 })
 
 endpoint.delete("/DeletarLicao", async(req,res) =>{
+    const dadus = req.body;
     try{
-        const dadus = req.body;
+        console.log(dadus)
+        if(!dadus.token){
+            return res.send("Token nao fornecido")
+        }
+        const verf = verifyToken(dadus.token)
+        
+        if(!verf.name || !verf.role){
+           return res.send("Token invalido")
+        }
         const response = await supabase
             .from("licoes")
             .delete()
