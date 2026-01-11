@@ -39,14 +39,15 @@ endpoint.post("/EnviarLicao", async(req,res) =>{
     }
 })
 
-endpoint.delete("/DeletarLicao", async(req,res) =>{
-    const dadus = req.body;
+endpoint.delete("/DeletarLicao/:nameLicao/:token", async(req,res) =>{
+    const name = req.params.nameLicao;
+    const token = req.params.token
+    
     try{
-        console.log(dadus)
-        if(!dadus.token){
+        if(!token){
             return res.send("Token nao fornecido")
         }
-        const verf = verifyToken(dadus.token)
+        const verf = verifyToken(token)
         
         if(!verf.name || !verf.role){
            return res.send("Token invalido")
@@ -54,7 +55,7 @@ endpoint.delete("/DeletarLicao", async(req,res) =>{
         const response = await supabase
             .from("licoes")
             .delete()
-            .eq("titulo_licao", dadus.nameLicao)
+            .eq("titulo_licao", name)
             
         res.send({banco: response})    
     } catch(error){

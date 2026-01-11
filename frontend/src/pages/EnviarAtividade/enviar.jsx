@@ -2,7 +2,7 @@ import "./enviar.scss"
 import "../../scss/global.scss";
 import "../../scss/fonts.scss";
 import { useState } from "react";
-import { supabase } from "../../supabaseClient";
+
 import Cabecalho2 from "../../components/headerPages";
 
 export default function EnviarAtividade() {
@@ -13,39 +13,14 @@ export default function EnviarAtividade() {
     const [carregando, setCarregando] = useState(false)
     const [nameUser, setNameUser] = useState('');
     
-    async function EnviarAtividades() {
+    async function Enviar() {
         if (!nomeLicao || !materia || !descricao || !data) {
             alert("Preencha todos os campos obrigatórios!");
             return;
         }
         setCarregando(true);
 
-        try {
-            const { data: response, error } = await supabase
-                .from('licoes')
-                .insert([{
-                    name: nameUser,
-                    titulo_licao: nomeLicao,
-                    descricao_licao: descricao,
-                    materia: materia,
-                    data_entrega: data
-                }]);
-
-            if (error) {
-                return alert("Error ao enviar mensagem: ", error.message);
-            } else {
-                alert("Atividade enviada com sucesso!");
-                
-                setNomeLicao('');
-                setMateria('');
-                setDescricao('');
-                setData('');
-                setNameUser('');
-            }
-        } catch (error) {
-            setCarregando(false);
-            alert("Error ao enviar ativiade, response: ",  error.message)
-        }
+        
     }
     
 
@@ -90,7 +65,7 @@ export default function EnviarAtividade() {
                 />
 
                 <button 
-                    onClick={EnviarAtividades} 
+                    onClick={Enviar} 
                     disabled={carregando}
                     className={carregando ? 'loading' : ''}
                 >

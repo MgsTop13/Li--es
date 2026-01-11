@@ -3,7 +3,8 @@ import "../../scss/global.scss";
 import "../../scss/fonts.scss";
 import { Link } from "react-router";
 import { useState } from "react";
-import { supabase } from "../../supabaseClient";
+import axios from "../../axios.js"
+
 import Cabecalho1 from "../../components/headerHome";
 
 export default function Home() {
@@ -11,14 +12,10 @@ export default function Home() {
 
     async function CarregarAtividades() {
         try{
-            const { data, error } = await supabase
-                .from('licoes')
-                .select('*');
-                
-            alert("Lições carregadas")
-            setLicao(data);
+            const response = await axios.get("/CarregarLicoes")
+            setLicao(response.data);
         } catch(error){
-            return alert("Error na requisição: ", error.message)
+            return alert(error.message)
         }
     }
 
