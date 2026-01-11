@@ -2,7 +2,7 @@ import "./enviar.scss"
 import "../../scss/global.scss";
 import "../../scss/fonts.scss";
 import { useState } from "react";
-
+import api from "../../axios.js"
 import Cabecalho2 from "../../components/headerPages";
 
 export default function EnviarAtividade() {
@@ -12,14 +12,30 @@ export default function EnviarAtividade() {
     const [data, setData] = useState('');
     const [carregando, setCarregando] = useState(false)
     const [nameUser, setNameUser] = useState('');
+    const [token, setToken] = useState(localStorage.getItem("token"));
     
     async function Enviar() {
-        if (!nomeLicao || !materia || !descricao || !data) {
-            alert("Preencha todos os campos obrigatórios!");
-            return;
+        if(!token){
+            return alert("Faça login para enviar a atividade")
         }
-        setCarregando(true);
-
+        if (!nomeLicao || !materia || !descricao || !data) {
+            return alert("Preencha todos os campos obrigatórios!");
+        }
+        
+        try{
+            const response = await api.post({
+                username: nameUser,
+                title: nomeLicao,
+                description: descricao,
+                materia: materia,
+                data: data,
+                token: token
+            })
+            setCarregando(true);
+            alert("Atividade enviada!")
+        } catch(error){
+            alert(error.message)
+        }
         
     }
     
@@ -69,7 +85,7 @@ export default function EnviarAtividade() {
                     disabled={carregando}
                     className={carregando ? 'loading' : ''}
                 >
-                    {carregando ? 'Enviando...' : 'Enviar Atividades'}
+                    {carregando ? 'Enviando...' : 'Enviar Atividade'}
                 </button>
             </section>
         </main>
