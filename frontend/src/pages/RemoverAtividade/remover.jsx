@@ -3,7 +3,7 @@ import "../../scss/global.scss";
 import "../../scss/fonts.scss";
 import { Link } from "react-router";
 import { useState } from "react";
-
+import api from "../../axios.js";
 import Cabecalho2 from "../../components/headerPages";
 
 
@@ -18,7 +18,7 @@ export default function RemoverAtividade() {
                 nomePage="Remover Lição"
             />
             <section className="page-remover">
-                
+                <h3>Nome da matéria </h3>
                 <input type="text" 
                     placeholder="Historia" 
                     value={name} 

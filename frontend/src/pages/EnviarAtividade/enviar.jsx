@@ -23,7 +23,7 @@ export default function EnviarAtividade() {
         }
         
         try{
-            const response = await api.post({
+            const response = await api.post("/EnviarLicao",{
                 username: nameUser,
                 title: nomeLicao,
                 description: descricao,

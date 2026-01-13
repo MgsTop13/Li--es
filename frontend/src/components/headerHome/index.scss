@@ -1,14 +1,24 @@
 .header1 {
-    text-align: center;
-    align-items: center;
     display: flex;
+    align-items: center;
+    text-align: center;
     background-color: #20606F;
     height: 80px;
     border-bottom: 3px solid black;
     box-shadow: 0px 5px 20px black;
-    justify-content: space-between;
-    padding: 0 10px;
+    
 
+    .links1{
+        display:flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 30%;
+        font-size: 10px;
+        margin-left: 15px;
+        margin-right: 10px;
+    
+    }
+    
     .PageAtualHome {
         border-radius: 25px;
         background-color: #5fad56;
@@ -18,9 +28,11 @@
         box-shadow: -2px 4px 3px black;
         width: 35%;
         position: relative;
+        
 
 
         h1 {
+            
             font-size: 1.2rem;
             margin: 0;
 
@@ -44,6 +56,10 @@
     .RemoverAtividade {
         position: relative;
 
+    }
+    
+    .Login{
+        margin-left: 30px;
     }
 }
 

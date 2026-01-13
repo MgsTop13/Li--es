@@ -4,51 +4,7 @@
   flex-direction: column;
   align-items: center;
 
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0b686e;
-    height: 60px;
-    border-bottom: 3px solid black;
-    box-shadow: 0px 5px 20px black;
-    padding: 0 20px;
-    position: relative;
-    width: 100%;
-
-    .PageAtualRemover {
-      border-radius: 25px;
-      background-color: #e07a5f;
-      padding: 10px 20px;
-      text-align: center;
-      border: 1px solid black;
-      box-shadow: -2px 4px 3px black;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 10px;
-
-      h1 {
-        font-size: 1.2rem;
-        margin: 0;
-
-        .Link {
-          color: #110b11;
-          text-decoration: none;
-        }
-      }
-    }
-
-    .Voltar {
-      margin: 0;
-
-      .Link {
-        color: #110b11;
-        text-decoration: none;
-        font-weight: bold;
-      }
-    }
-  }
+  
 
   /* 🌟 Seção da página de remoção */
   .page-remover {
@@ -107,27 +63,7 @@
 /* 📱 Responsividade */
 @media (max-width: 768px) {
   .main-remover {
-    header {
-      flex-direction: column;
-      height: auto;
-      padding: 15px;
-
-      .PageAtualRemover {
-        position: static;
-        transform: none;
-        width: 90%;
-        margin-bottom: 10px;
-
-        h1 {
-          font-size: 1rem;
-        }
-      }
-
-      .Voltar {
-        margin-top: 5px;
-        font-size: 0.9rem;
-      }
-    }
+    
 
     .page-remover {
       width: 90%;
@@ -142,15 +78,7 @@
 /* 📱 Responsividade extra */
 @media (max-width: 480px) {
   .main-remover {
-    header {
-      .PageAtualRemover h1 {
-        font-size: 0.9rem;
-      }
-
-      .Voltar {
-        font-size: 0.8rem;
-      }
-    }
+    
 
     .page-remover {
       input,
