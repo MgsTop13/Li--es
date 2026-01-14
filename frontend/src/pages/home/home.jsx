@@ -12,9 +12,6 @@ export default function Home() {
     const [licao, setLicao] = useState([]);
 
     async function CarregarAtividades() {
-        if(!licao || licao.length === 0){
-            return alert("Nenhuma atividade salva...")
-        }
         try{
             const response = await api.get("/CarregarLicoes")
             setLicao(response.data.atividades.data);
@@ -28,8 +25,13 @@ export default function Home() {
     }, [CarregarAtividades])
     
     function Funcionamento(){
-        alert("Carregando lições, aguarde...")
         alert("Caso demorar por mais de 5 minutos, contate o ADM para solucionar errors!")
+        alert("Carregando lições, aguarde...")
+        if(!licao || licao.length === 0){
+            alert("Nenhuma atividade salva...")
+        }
+        
+        
     }
 
     return (

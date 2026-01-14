@@ -10,7 +10,7 @@ export default function Cabecalho1() {
                 </Link>
             </h3>
             <h3 className="RemoverAtividade">
-                <Link className="Link" to={"/RemoverAtivLoginidade"}>Remover Atividades
+                <Link className="Link" to={"/RemoverAtividade"}>Remover Atividades
                 </Link>
             </h3>
             </div>
