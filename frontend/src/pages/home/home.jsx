@@ -2,8 +2,9 @@ import "./home.scss";
 import "../../scss/global.scss";
 import "../../scss/fonts.scss";
 import { Link } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../../axios.js"
+
 
 import Cabecalho1 from "../../components/headerHome";
 
@@ -11,12 +12,24 @@ export default function Home() {
     const [licao, setLicao] = useState([]);
 
     async function CarregarAtividades() {
+        if(!licao || licao.length === 0){
+            return alert("Nenhuma atividade salva...")
+        }
         try{
             const response = await api.get("/CarregarLicoes")
             setLicao(response.data.atividades.data);
         } catch(error){
             return alert(error.message)
         }
+    }
+    
+    useEffect(() => {
+        CarregarAtividades()
+    }, [CarregarAtividades])
+    
+    function Funcionamento(){
+        alert("Carregando lições, aguarde...")
+        alert("Caso demorar por mais de 5 minutos, contate o ADM para solucionar errors!")
     }
 
     return (
@@ -50,7 +63,7 @@ export default function Home() {
 
 
             </section>
-                <button onClick={CarregarAtividades}>Carregar Lições</button>
+                <button onClick={Funcionamento}>Dúvidas</button>
         </main>
     );
 }

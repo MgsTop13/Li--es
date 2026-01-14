@@ -56,7 +56,7 @@ endpoint.delete("/DeletarLicao/:nameLicao/:token", async(req,res) =>{
             .from("licoes")
             .delete()
             .eq("titulo_licao", name)
-            
+            console.log(response)
         res.send({banco: response})    
     } catch(error){
         res.status(500).send({OiaOerror: error})

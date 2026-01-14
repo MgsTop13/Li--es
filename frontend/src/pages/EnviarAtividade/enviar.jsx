@@ -31,6 +31,11 @@ export default function EnviarAtividade() {
                 data: data,
                 token: token
             })
+            
+            if(response.data === "Token invalido"){
+                return alert("Faça login para enviar a atividade")
+                setCarregando(false)
+            }
             setCarregando(true);
             alert("Atividade enviada!")
         } catch(error){
