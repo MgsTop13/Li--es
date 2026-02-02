@@ -3,15 +3,28 @@ const endpoint = Router();
 import {supabase} from "../supabaseClient.js"
 import {generateToken, verifyToken} from "../utils/jwt.js"
 
-endpoint.get("/CarregarLicoes", async(req,res) =>{
+endpoint.get("/CarregarEscolas", async(req,res) => {
     try{
+        const escolas = await supabase
+            .from("escola")
+            .select("*")
+        res.send({escolas: escolas})
+    } catch(error){
+        res.status(500).send({OiaOerror: error.message})
+    }
+})
+
+endpoint.get("/CarregarLicoes/:school", async(req,res) =>{
+    try{
+        const school = req.params.school;
         const dadosBanco = await supabase
             .from("licoes")
-            .select("*");
+            .select("*")
+            .eq("escola", school);
             
         res.send({atividades: dadosBanco})
     } catch(error){
-        res.status(500).send({olhaOError: error})
+        res.status(500).send({olhaOError: error.message})
     }
 })
 
@@ -30,12 +43,13 @@ endpoint.post("/EnviarLicao", async(req,res) =>{
                 titulo_licao: dadosLicao.title,
                 descricao_licao: dadosLicao.description,
                 materia: dadosLicao.materia,
-                data_entrega: dadosLicao.data
+                data_entrega: dadosLicao.data,
+                escola: dadosLicao.escola
             }])
             
             res.send({banco: responseBanco})
     } catch(error){
-        res.status(500).send({OiaOError: error})
+        res.status(500).send({OiaOError: error.message})
     }
 })
 
@@ -59,7 +73,7 @@ endpoint.delete("/DeletarLicao/:nameLicao/:token", async(req,res) =>{
             console.log(response)
         res.send({banco: response})    
     } catch(error){
-        res.status(500).send({OiaOerror: error})
+        res.status(500).send({OiaOerror: error.message})
     }
 })
 

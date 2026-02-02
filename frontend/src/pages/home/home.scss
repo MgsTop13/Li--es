@@ -13,15 +13,20 @@
         padding-top: 2%;
         width: 100%;
 
-        .dados {
+        .link{
+            text-decoration: none;
             flex: 1 1 calc(33.33% - 2rem);
-            display: flex;
-            flex-direction: column;
-            background-color: #087f8c83;
-            box-shadow: -2px 3px 5px #02373d;
             padding: 10px;
-            margin-top: 3.3%;
-            border-radius: 8px;
+            
+            .dados {
+                flex: 1 1 calc(33.33% - 2rem);
+                display: flex;
+                flex-direction: column;
+                padding: 10px;
+                margin-top: 3.3%;
+                border-radius: 8px;
+                box-shadow: -2px 3px 5px #02373d;
+                background-color: #087f8c83;
 
             h2 {
                 padding-top: 7px;
@@ -32,6 +37,16 @@
                 color: #bec2bf;
             }
         }
+        }
+    }
+
+    .botoes{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .open{
+        filter: blur(15px);
     }
 }
 

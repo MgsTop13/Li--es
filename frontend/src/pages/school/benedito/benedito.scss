@@ -1,0 +1,90 @@
+.benedito {
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    text-align: center;
+
+    .licoes {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        padding-top: 2%;
+        width: 100%;
+
+            .dados {
+            flex: 1 1 calc(33.33% - 2rem);
+            display: flex;
+            flex-direction: column;
+            background-color: #087f8c83;
+            box-shadow: -2px 3px 5px #02373d;
+            padding: 10px;
+            margin-top: 3.3%;
+            border-radius: 8px;
+
+            h2 {
+                padding-top: 7px;
+                color: #ff9100;
+            }
+
+            h3 {
+                color: #bec2bf;
+            }
+
+            .remover{
+                color: #bec2bf;
+                position: relative;
+                top: -280px;
+                background-color: #ac0404;
+                width: 120px;
+                height: 35px;
+                padding-top: 8px;
+                border-radius: 7px;
+            }
+        
+    }
+    }
+
+    .botoes{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .modalAddAberto{
+        transition: 150ms;
+        filter: blur(13px);
+    }
+    .modalAddFechado{
+        transition: 250ms;
+    }
+
+    .modalDelAberto{
+        transition: 150ms;
+        filter: blur(13px);
+    }
+    .modalDelFechado{
+        filter: blur(0px);
+        transition: 250ms;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .benedito {
+        .licoes {
+            .dados {
+                flex: 1 1 calc(50% - 1rem);
+            }
+        }
+    }
+}
+
+@media (max-width: 468px) {
+    .benedito {
+        .licoes {
+            .dados {
+                flex: 1 1 100%;
+            }
+        }
+    }
+}

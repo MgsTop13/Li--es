@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "https://backlicao.onrender.com"
+    baseURL: "http://localhost:5010/"
 });
 
 export default api;

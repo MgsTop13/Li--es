@@ -56,7 +56,6 @@ endpoint.post("/Login", async(req,res) =>{
         
         const formatDados2 = dadosUser.data[0];
         const decoded = MD5(dados.password);
-        
         // ⬇️ CORREÇÃO: Comparar apenas senha (ou senha e username)
         if (formatDados2.password !== decoded) {
             return res.status(401).send({ error: "Senha incorreta" });
@@ -71,12 +70,7 @@ endpoint.post("/Login", async(req,res) =>{
         res.send({ 
             success: true, 
             message: "Login realizado com sucesso",
-            token: token,
-            user: {
-                id: formatDados2.id,
-                name: formatDados2.name,
-                email: formatDados2.email
-            }
+            token: token
         });
         
     } catch(error) {

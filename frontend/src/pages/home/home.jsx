@@ -4,68 +4,86 @@ import "../../scss/fonts.scss";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import api from "../../axios.js"
-
-
 import Cabecalho1 from "../../components/headerHome";
+import Acess from "../../components/acess/acess.jsx";
+
 
 export default function Home() {
-    const [licao, setLicao] = useState([]);
+    const [escola, setEscola] = useState([]);
+    const [modal, setModal] = useState(false);
+    const [user, setUser] = useState([]);
+    const [token, setToken] = useState(localStorage.getItem("token"))
 
-    async function CarregarAtividades() {
-        try{
-            const response = await api.get("/CarregarLicoes")
-            setLicao(response.data.atividades.data);
-        } catch(error){
-            return alert(error.message)
+    async function CarregarEscolas() {
+        try {
+            const response = await api.get("/CarregarEscolas")
+            setEscola(response.data.escolas.data);
+        } catch (error) {
+            return console.error(error)
         }
     }
-    
-    useEffect(() => {
-        CarregarAtividades()
-    }, [CarregarAtividades])
-    
-    function Funcionamento(){
-        alert("Caso demorar por mais de 5 minutos, contate o ADM para solucionar errors!")
-        alert("Carregando lições, aguarde...")
-        if(!licao || licao.length === 0){
-            alert("Nenhuma atividade salva...")
+
+    async function decodeToken() {
+        try {
+            const response = await api.post("/TestarToken", {
+                token
+            })
+            const format = response.data.dados
+            setUser(format)
+        } catch (error) {
+            console.error(error)
         }
-        
-        
+    }
+
+    useEffect(() => {
+        if (escola.length >= 1) {
+            return
+        } else {
+            CarregarEscolas()
+        }
+        decodeToken()
+
+    }, [CarregarEscolas])
+
+    function Funcionamento() {
+        alert("Caso demorar por mais de 5 minutos, contate o ADM para solucionar errors!")
+        alert(`Para acessar as escolas, clique ao botão de "Pedir acesso" e aguarde 2 dias ou contate ao ADM`)
+    }
+
+    function ShowModal() {
+        setModal(!modal);
     }
 
     return (
-        <main className="main-home">
-            <Cabecalho1 />
+        <main className={`main-home`}>
+            <Cabecalho1
+                admina={user.ComunidadeTop}
+            />
 
-            <section className="page-home">
-
-                {licao.map((item) => {
-                    const dataFormatada = new Date(item.data_entrega).toLocaleDateString("pt-BR", {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric"
-                    });  
+            <section className={`page-home ${modal ? "open": "close"}`}>
+                {escola.map((item) => {
                     return (
-                        <section className="dados">
-                            <h2>Matéria</h2>
-                            <h3>{item.materia}</h3>
-                            <h2>Título</h2>
-                            <h3>{item.titulo_licao}</h3>
-                            <h2>Descrição</h2>
-                            <h3>{item.descricao_licao}</h3>
-                            <h2>Dia de Entrega</h2>
-                            <h3>{item.data_entrega}</h3>
-                            <h2>Autor</h2>
-                            <h3>{item.name}</h3>
-                        </section>
+                        <Link className="link" key={item.id_escola} to={`/${item.name_school}`}>
+                            <section className="dados" id={`${item.id_escola}`}>
+                                <h2>Escola</h2>
+                                <h3>{item.name_school}</h3>
+                            </section>
+                        </Link>
                     );
                 })}
 
-
-
             </section>
+            <div className="botoes">
                 <button onClick={Funcionamento}>Dúvidas</button>
+                <button onClick={ShowModal}>{modal ? "Fechar" : "Pedir acesso"}</button>
+            </div>
+            {modal && (
+                <Acess
+                    idUser={user.role}
+                    name={user.name}
+                    onClose={ShowModal}
+                />
+            )}
         </main>
     );
 }

@@ -33,7 +33,6 @@ export default function Login() {
                 password
             });
 
-            console.log("Resposta do login:", response.data);
 
             // Extrair token da resposta (ajuste conforme sua API)
             let token = "";
@@ -54,7 +53,6 @@ export default function Login() {
 
             // Salva o token no localStorage
             localStorage.setItem("token", token);
-            console.log("Token salvo:", token);
 
             // Mensagem de sucesso
             const mensagemSucesso = response.data?.atividades?.message || 

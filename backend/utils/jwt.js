@@ -9,10 +9,13 @@ export function generateToken(usuario) {
     email: usuario.email,
     pass: usuario.recuperacao,
     role: usuario.id_user,
+    benedito: usuario.benedito,
+    english: usuario.insf,
+    ComunidadeTop: usuario.admin,
     date: new Date()
   };
   console.log(usuario)
-  return jwt.sign(userInfo, KEY, { expiresIn: '40m' });
+  return jwt.sign(userInfo, KEY, { expiresIn: '7h' });
 }
 
 export function verifyToken(token) {
